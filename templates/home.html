@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Let's Eat!</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0px;
+            font-family: Karla;
+            font-size: 18px;
+            font-weight: normal;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #e0a71f;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        form {
+            margin: 0px;
+            padding-left: 33vw;
+            padding-right: 33vw;
+            position: absolute;
+            top: 50vh;
+            transform: translateY(-60%);
+        }
+
+        input[type=radio], input[type=checkbox] {
+            border: 0px;
+            height: 0px;
+            width: 0px;
+            visibility: hidden;
+        }
+
+        label {
+            cursor: pointer;
+            padding: 1vh;
+            background: #ebe8e1;
+        }
+
+        .last {
+            margin-right: 10px;
+        }
+
+        input:checked + label {
+            background: #e0a71f;
+            color: white;
+        }
+
+        label:hover {
+            background: #e0a71f;
+        }
+
+        button {
+            width: 120px;
+            padding: 1vh;
+            border: 0px;
+            background: #ebe8e1;
+            font-family: Karla;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 40px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background: #e0a71f;
+        }
+
+        a {
+            text-decoration: none;
+            color: #e0a71f;
+            font-weight: bold;
+        }
+
+        a:visited {
+            color: #e0a71f;
+        }
+
+        .i {
+            font-style: italic;
+        }
+
+        #restaurant {
+            font-size: 24px;
+        }
+
+        #info {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10;
+            background-color: white;
+        }
+
+        #info-display {
+            width: 3vh;
+            height: 3vh;
+            background-color: #ebe8e1;
+            border-radius: 50%;
+            line-height: 3vh;
+            position: absolute;
+            right: 1vh;
+            top: 1vh;
+            font-weight: bold;
+            z-index: 11;
+        }
+
+        #info-display:hover {
+            cursor: pointer;
+            background-color: #e0a71f;
+        }
+
+        #text {
+            position: absolute;
+            padding-left: 33vw;
+            padding-right: 33vw;
+            top: 50vh;
+            transform: translateY(-60%);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <h1 id="name">🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶🌽🥕🥔🍠🥐🥯🍞🥖🥨🧀🥚🍳🥞🥓🥩🍗🍖🦴🌭🍔🍟🍕🥪🥙🌮🌯🥗🥘🥫🍝🍜🍲🍛🍣🍱🥟🍤🍙🍚🍘🍥🥠🥮🍢🍡🍧🍨🍦🥧🧁🍰🎂🍮🍭🍬🍫🍿🍩🍪🌰🥜🍯🥛☕️🍵🥤🍶🍺🍻🥂🍷🥃🍸🍹🍾🥄🍴🍽🥣🥡🥢🧂</h1>
+        <h2>A random restaurant generator for indecisive eaters. Filter your selections or just take a chance!
+        (And if you <span class="i">really</span> don't want to eat there, roll again!)</h2>
+
+        <br>
+
+        <h3>Minimum Rating?</h3>
+        <input type="radio" id="3" name="rating" value="3">
+        <label for="3">★ ★ ★</label>
+        <input type="radio" id="4" name="rating" value="4">
+        <label for="4">★ ★ ★ ★</label>
+        <input type="radio" id="5" name="rating" value="5">
+        <label for="5" class="last">★ ★ ★ ★ ★</label>
+
+        <h3>Price?</h3>
+        <input type="checkbox" id="$" name="price" value="1">
+        <label for="$">$</label>
+        <input type="checkbox" id="$$" name="price" value="2">
+        <label for="$$">$$</label>
+        <input type="checkbox" id="$$$" name="price" value="3">
+        <label for="$$$">$$$</label>
+        <input type="checkbox" id="$$$$" name="price" value="4">
+        <label for="$$$$" class="last">$$$$</label>
+
+        <h3>Distance?</h3>
+        <input type="radio" id="walking" name="distance" value="1610">
+        <label for="walking">Walking</label>
+        <input type="radio" id="driving" name="distance" value="16100">
+        <label for="driving" class="last">Driving</label>
+
+        <h3>Dining Option?</h3>
+        <input type="radio" id="eatthere" name="transactions" value="eatthere">
+        <label for="eatthere">Eat There</label>
+        <input type="radio" id="pickup" name="transactions" value="pickup">
+        <label for="pickup">Pick Up</label>
+        <input type="radio" id="delivery" name="transactions" value="delivery">
+        <label for="delivery">Delivery</label>
+
+        <br><br>
+        <button type = "submit" onclick = "location.href = '{% url 'script' %}'" id="button">Let's Eat!</button>
+        <br>
+        <div id="result">{% if rName %}
+        <a href = {{rURL}} id="restaurant">{{rName}}</a><br>
+            {{rAddress}}<br>
+            {{rCityStateZIP}}<br>
+            {% endif %}</div>
+    </form>
+
+    <div id="info-display">i</div>
+    <div id="info" class="hidden">
+        <div id="text">
+            Hi there 👋, I'm Lily! Although I love going out and trying new restaurants, cafés, and dessert shops with
+            friends, I can never decide where to go! And what's worse is that my friends are
+            <span class="i">just as indecisive</span>. If this happens to you too, you know how frustrating it can be.
+            So I made this website to <span class="i">maybe</span> help solve some of these problems. If you're an
+            indecisive eater like me, I hope this website will help you decide where to eat next! 😊
+
+            <br><br>If you have any questions, feel free to email me at
+            <a href="mailto:lilysai@berkeley.edu">lilysai@berkeley.edu</a>
+        </div>
+    </div>
+
+    <script>
+        let emojilist = "🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶🌽🥕🥔🍠🥐🥯🍞🥖🥨🧀🥚🍳🥞🥓🥩🍗🍖" +
+            "🌭🍔🍟🍕🥪🥙🌮🌯🥗🥘🥫🍝🍜🍲🍛🍣🍱🥟🍤🍙🍚🍘🍥🥠🥮🍢🍡🍧🍨🍦🥧🧁🍰🎂🍮🍭🍬🍫🍿🍩🍪🌰🥜🍯" +
+            "🥛☕️🍵🥤🍶🍺🍻🥂🍷🥃🍸🍹🥄🍴🍽🥣🥡🥢🧂";
+        let randind = Math.floor(Math.random() * (emojilist.length/2))
+        let randemoji = emojilist.substring(randind*2, randind*2 + 2);
+        console.log(emojilist, randind, randemoji);
+        document.getElementById("name").innerHTML = "Let's Eat! " + randemoji;
+
+        document.getElementById("info-display").onclick = info;
+        function info() {
+            document.getElementById("info").classList.toggle("hidden");
+        }
+
+    </script>
+
+</body>
+</html>
