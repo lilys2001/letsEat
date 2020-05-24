@@ -11,7 +11,11 @@ def output(request):
     api_key = "pdW_LVpLDwXRDHJKzUs2TO6pXNAcJpLGoxvGAAwGx170CaPuQhyOybkUfIPatnuoqt_PiZruq5P-MP9F-1l2PqWeoQo8qPAQ1_nUQgSlVVMF-b5fI5mCJqxY-Xl6XXYx"
     headers = {"Authorization": "Bearer %s" % api_key}
 
-    send_url = 'http://api.ipstack.com/check?access_key=0060b34a33ed8e31edfc58a3966ae596'
+    send_url = 'http://api.ipstack.com/check?access_key=0060b34a33ed8e31edfc58a3966ae596'    # for regular deployment
+
+    ip = request.META.get('HTTP_X_REAL_IP')    # for python anywhere
+    send_url = 'http://api.ipstack.com/' + ip + '?access_key=0060b34a33ed8e31edfc58a3966ae596'
+
     r = requests.get(send_url)
     j = json.loads(r.text)
 
@@ -63,8 +67,8 @@ def output(request):
         rURL = rand['url']
 
         return render(request, 'home.html', {'rName': rName, 'rAddress': rLocation[0], 'rCityStateZIP': rLocation[1],
-                                             'rURL': rURL})
+                                             'rURL': rURL, 'ip': ip})
     else:
         return render(request, 'home.html', {'rName': "Sorry, there are no open restaurants with the filters you chose. "
                                                       "Try pressing the 'Let's Eat' button without selecting filters!",
-                                             'rAddress': '', 'rCityStateZIP': '', 'rURL': ''})
+                                             'rAddress': '', 'rCityStateZIP': '', 'rURL': '', 'ip': ip})
