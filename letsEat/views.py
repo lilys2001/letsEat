@@ -54,7 +54,7 @@ def output(request):
         filtered_restaurants = [r for r in filtered_restaurants if ('distance' in r and
                                 r['distance'] <= int(request.POST.get('distance')))]
 
-    if request.POST.get('distance'):
+    if request.POST.get('transactions') and request.POST.get('transactions') != 'eatthere':
         filtered_restaurants = [r for r in filtered_restaurants if ('transactions' in r and
                                 request.POST.get('transactions') in r['transactions'])]
 
