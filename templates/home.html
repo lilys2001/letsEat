@@ -10,7 +10,7 @@
         body {
             margin: 0px;
             font-family: Karla;
-            font-size: 18px;
+            font-size: 2vh;
             font-weight: normal;
             display: flex;
             flex-direction: column;
@@ -20,26 +20,38 @@
         }
 
         h1 {
-            font-size: 40px;
+            font-size: 4.6vh;
             color: #e0a71f;
         }
 
         h2 {
-            font-size: 18px;
+            font-size: 2vh;
             font-weight: normal;
         }
 
         h3 {
-            font-size: 20px;
+            font-size: 2.3vh;
         }
 
         form {
             margin: 0px;
-            padding-left: 33vw;
-            padding-right: 33vw;
+            padding-left: 20vw;
+            padding-right: 20vw;
             position: absolute;
-            top: 50vh;
-            transform: translateY(-60%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #about {
+            width: 33vw;
+        }
+
+        .answers {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         input[type=radio], input[type=checkbox] {
@@ -52,11 +64,8 @@
         label {
             cursor: pointer;
             padding: 1vh;
+            margin-bottom: 0.3vh;
             background: #ebe8e1;
-        }
-
-        .last {
-            margin-right: 10px;
         }
 
         input:checked + label {
@@ -69,14 +78,15 @@
         }
 
         button {
-            width: 120px;
             padding: 1vh;
+            padding-left: 2vh;
+            padding-right: 2vh;
             border: 0px;
             background: #ebe8e1;
             font-family: Karla;
             font-weight: bold;
-            font-size: 20px;
-            margin: 40px;
+            font-size: 2.3vh;
+            margin: 5vh;
         }
 
         button:hover {
@@ -99,7 +109,7 @@
         }
 
         #restaurant {
-            font-size: 24px;
+            font-size: 2.7vh;
         }
 
         #info {
@@ -113,11 +123,11 @@
         }
 
         #info-display {
-            width: 3vh;
-            height: 3vh;
+            width: 4vh;
+            height: 4vh;
             background-color: #ebe8e1;
             border-radius: 50%;
-            line-height: 3vh;
+            line-height: 4vh;
             position: absolute;
             right: 1vh;
             top: 1vh;
@@ -132,8 +142,8 @@
 
         #text {
             position: absolute;
-            padding-left: 33vw;
-            padding-right: 33vw;
+            padding-left: 20vw;
+            padding-right: 20vw;
             top: 50vh;
             transform: translateY(-60%);
         }
@@ -147,47 +157,52 @@
     <form action="" method="post">
         {% csrf_token %}
 
-        <h1 id="name">🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶🌽🥕🥔🍠🥐🥯🍞🥖🥨🧀🥚🍳🥞🥓🥩🍗🍖🦴🌭🍔🍟🍕🥪🥙🌮🌯🥗🥘🥫🍝🍜🍲🍛🍣🍱🥟🍤🍙🍚🍘🍥🥠🥮🍢🍡🍧🍨🍦🥧🧁🍰🎂🍮🍭🍬🍫🍿🍩🍪🌰🥜🍯🥛☕️🍵🥤🍶🍺🍻🥂🍷🥃🍸🍹🍾🥄🍴🍽🥣🥡🥢🧂</h1>
-        <h2>A random restaurant generator for indecisive eaters. Filter your selections or just take a chance!
+        <h1 id="name">Let's Eat!</h1>
+        <h2 id="about">A random restaurant generator for indecisive eaters. Filter your selections or just take a chance!
         (And if you <span class="i">really</span> don't want to eat there, roll again!)</h2>
 
-        <br>
-
         <h3>Minimum Rating?</h3>
-        <input type="radio" id="3" name="rating" value="3">
-        <label for="3">★ ★ ★</label>
-        <input type="radio" id="4" name="rating" value="4">
-        <label for="4">★ ★ ★ ★</label>
-        <input type="radio" id="5" name="rating" value="5">
-        <label for="5" class="last">★ ★ ★ ★ ★</label>
+        <div class="answers">
+            <input type="radio" id="3" name="rating" value="3">
+            <label for="3">★ ★ ★</label>
+            <input type="radio" id="4" name="rating" value="4">
+            <label for="4">★ ★ ★ ★</label>
+            <input type="radio" id="5" name="rating" value="5">
+            <label for="5" class="last">★ ★ ★ ★ ★</label>
+        </div>
 
         <h3>Price?</h3>
-        <input type="checkbox" id="$" name="price" value="1">
-        <label for="$">$</label>
-        <input type="checkbox" id="$$" name="price" value="2">
-        <label for="$$">$$</label>
-        <input type="checkbox" id="$$$" name="price" value="3">
-        <label for="$$$">$$$</label>
-        <input type="checkbox" id="$$$$" name="price" value="4">
-        <label for="$$$$" class="last">$$$$</label>
+        <div class="answers">
+            <input type="checkbox" id="$" name="price" value="1">
+            <label for="$">$</label>
+            <input type="checkbox" id="$$" name="price" value="2">
+            <label for="$$">$$</label>
+            <input type="checkbox" id="$$$" name="price" value="3">
+            <label for="$$$">$$$</label>
+            <input type="checkbox" id="$$$$" name="price" value="4">
+            <label for="$$$$" class="last">$$$$</label>
+        </div>
 
         <h3>Distance?</h3>
-        <input type="radio" id="walking" name="distance" value="1610">
-        <label for="walking">Walking</label>
-        <input type="radio" id="driving" name="distance" value="16100">
-        <label for="driving" class="last">Driving</label>
+        <div class="answers">
+            <input type="radio" id="walking" name="distance" value="1610">
+            <label for="walking">Walking</label>
+            <input type="radio" id="driving" name="distance" value="16100">
+            <label for="driving" class="last">Driving</label>
+        </div>
 
         <h3>Dining Option?</h3>
-        <input type="radio" id="eatthere" name="transactions" value="eatthere">
-        <label for="eatthere">Eat There</label>
-        <input type="radio" id="pickup" name="transactions" value="pickup">
-        <label for="pickup">Pick Up</label>
-        <input type="radio" id="delivery" name="transactions" value="delivery">
-        <label for="delivery">Delivery</label>
+        <div class="answers">
+            <input type="radio" id="eatthere" name="transactions" value="eatthere">
+            <label for="eatthere">Eat There</label>
+            <input type="radio" id="pickup" name="transactions" value="pickup">
+            <label for="pickup">Pick Up</label>
+            <input type="radio" id="delivery" name="transactions" value="delivery">
+            <label for="delivery">Delivery</label>
+        </div>
 
-        <br><br>
         <button type = "submit" onclick = "location.href = '{% url 'script' %}'" id="button">Let's Eat!</button>
-        <br>
+
         <div id="result">{% if rName %}
         <a href = {{rURL}} id="restaurant">{{rName}}</a><br>
             {{rAddress}}<br>
